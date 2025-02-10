@@ -22,8 +22,10 @@ jobs:
     steps:
       - name: Send message to Discord
         run: |
-          RANDOM_MESSAGE=https://official-joke-api.appspot.com/random_joke
+          RANDOM_MESSAGE=$(curl -s https://official-joke-api.appspot.com/random_joke)
           BRANCH_NAME=${GITHUB_REF##*/}
+          SETUP=$(echo $RANDOM_MESSAGE | jq -r '.setup')
+          PUNCHLINE=$(echo $RANDOM_MESSAGE | jq -r '.punchline')
           curl -X POST -H "Content-Type: application/json" \
           -d "{\"content\": \"Tests failed on branch $BRANCH_NAME! $RANDOM_MESSAGE\"}" \
           ${{ secrets.DISCORD_LOG }}
