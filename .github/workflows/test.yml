@@ -27,5 +27,5 @@ jobs:
           SETUP=$(echo $RANDOM_MESSAGE | jq -r '.setup')
           PUNCHLINE=$(echo $RANDOM_MESSAGE | jq -r '.punchline')
           curl -X POST -H "Content-Type: application/json" \
-          -d "{\"content\": \"Tests failed on branch $BRANCH_NAME! $RANDOM_MESSAGE\"}" \
+          -d "{\"content\": \"FUCKING Tests failed on branch $BRANCH_NAME! $RANDOM_MESSAGE\"}" \
           ${{ secrets.DISCORD_LOG }}
